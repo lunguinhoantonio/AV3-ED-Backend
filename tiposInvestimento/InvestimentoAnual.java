@@ -24,6 +24,6 @@ public abstract class InvestimentoAnual extends TipoInvestimento {
 
     @Override
     public String toString() {
-        return super.toString() + getQuantAnos() + " anos";
+        return super.toString() + getQuantAnos() + (getQuantAnos() == 1 ? " ano" : " anos");
     }
 }

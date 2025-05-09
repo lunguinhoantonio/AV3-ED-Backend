@@ -24,6 +24,6 @@ public abstract class InvestimentoMensal extends TipoInvestimento {
 
     @Override
     public String toString() {
-        return super.toString() + getQuantMeses() + " meses";
+        return super.toString() + getQuantMeses() + (getQuantMeses() == 1 ? " mês" : " meses");
     }
 }

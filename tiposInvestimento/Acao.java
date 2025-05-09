@@ -30,6 +30,6 @@ public class Acao extends InvestimentoMensal {
 
     @Override
     public String toString() {
-        return "Tipo de Investimento: Ações, " + super.toString();
+        return "ID: " + getId() + " Tipo de Investimento: Ações" + super.toString();
     }
 }

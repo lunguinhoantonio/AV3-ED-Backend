@@ -2,9 +2,12 @@ package tiposInvestimento;
 
 public abstract class TipoInvestimento {
     private double capital, montante, porcRendimento;
+    private static int contador = 1;
+    private int id;
 
     public TipoInvestimento(double capital) {
         this.capital = capital;
+        this.id = contador++; // ID único por objeto
     }
 
     public abstract void calcRentabilidade();
@@ -12,6 +15,10 @@ public abstract class TipoInvestimento {
 
     public double getCapital() {
         return capital;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setCapital(double capital) {
@@ -36,7 +43,7 @@ public abstract class TipoInvestimento {
 
     @Override
     public String toString() {
-        return "Valor Inicial: R$" + String.format("%.2f", getCapital()) +
+        return ", Valor Inicial: R$" + String.format("%.2f", getCapital()) +
                 ", Valor Final: R$" + String.format("%.2f", getMontante()) +
                 ", Rendimento: " + String.format("%.2f", getPorcRendimento()) + "%" +
                 ", Tempo: ";

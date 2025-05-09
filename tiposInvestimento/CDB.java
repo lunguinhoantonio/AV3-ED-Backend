@@ -22,7 +22,7 @@ public class CDB extends InvestimentoAnual {
 
     @Override
     public String toString() {
-        return "Tipo do Investimento: CDB, " + super.toString() +
+        return "ID: " + getId() + " Tipo do Investimento: CDB" + super.toString() +
                 ", Taxa CDI: " + String.format("%.2f", getTaxaCDI() * 100) + "%";
     }
 }

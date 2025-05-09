@@ -22,7 +22,7 @@ public class TesouroSelic extends InvestimentoAnual {
 
     @Override
     public String toString() {
-        return "Tipo do Investimento: Tesouro Selic, " + super.toString() +
+        return "ID: " + getId() + " Tipo do Investimento: Tesouro Selic" + super.toString() +
                 ", Taxa Selic: " + getTaxaSelic() * 100 + "%";
     }
 }

@@ -23,7 +23,7 @@ public class Poupanca extends InvestimentoMensal {
 
     @Override
     public String toString() {
-        return "Tipo do Investimento: Poupança, " + super.toString() +
+        return "ID: " + getId() + " Tipo do Investimento: Poupança" + super.toString() +
                 ", Taxa Poupança: " + getTaxaPoupanca() * 100 + "%";
     }
 }

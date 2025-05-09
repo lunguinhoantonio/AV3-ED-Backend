@@ -42,6 +42,8 @@ public class Yeste {
                         double capital;
                         int tempo;
                         switch (tipo) {
+                            case 0:
+                                break;
                             case 1:
                                 do {
                                     System.out.print("Informe o capital inicial (R$): ");

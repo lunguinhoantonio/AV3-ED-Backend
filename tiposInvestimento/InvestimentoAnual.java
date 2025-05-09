@@ -9,7 +9,7 @@ public abstract class InvestimentoAnual extends TipoInvestimento {
     }
 
     @Override
-    public abstract double calcRentabilidade();
+    public abstract void calcRentabilidade();
 
     @Override
     public abstract void calcValorFinal();
@@ -20,5 +20,10 @@ public abstract class InvestimentoAnual extends TipoInvestimento {
 
     public void setQuantAnos(int quantAnos) {
         this.quantAnos = quantAnos;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + getQuantAnos() + " anos";
     }
 }

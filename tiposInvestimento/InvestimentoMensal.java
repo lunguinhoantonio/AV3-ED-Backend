@@ -9,7 +9,7 @@ public abstract class InvestimentoMensal extends TipoInvestimento {
     }
 
     @Override
-    public abstract double calcRentabilidade();
+    public abstract void calcRentabilidade();
 
     @Override
     public abstract void calcValorFinal();
@@ -20,5 +20,10 @@ public abstract class InvestimentoMensal extends TipoInvestimento {
 
     public void setQuantMeses(int quantMeses) {
         this.quantMeses = quantMeses;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + getQuantMeses() + " meses";
     }
 }

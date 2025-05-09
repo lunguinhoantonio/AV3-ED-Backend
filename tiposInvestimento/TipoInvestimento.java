@@ -7,7 +7,7 @@ public abstract class TipoInvestimento {
 
     public TipoInvestimento(double capital) {
         this.capital = capital;
-        this.id = contador++; // ID único por objeto
+        this.id = contador++; 
     }
 
     public abstract void calcRentabilidade();

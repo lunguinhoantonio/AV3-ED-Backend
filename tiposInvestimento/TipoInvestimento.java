@@ -3,7 +3,7 @@ package tiposInvestimento;
 public abstract class TipoInvestimento {
     private double capital, montante, porcRendimento;
     private static int contador = 1;
-    private int id;
+    private final int id;
 
     public TipoInvestimento(double capital) {
         this.capital = capital;

@@ -8,9 +8,8 @@ public class Acao extends InvestimentoMensal {
     }
 
     @Override
-    public double calcRentabilidade() {
-        double porcAlt = (getMontante() - getCapital()) / getCapital();
-        return porcAlt * 100;
+    public void calcRentabilidade() {
+        setPorcRendimento(((getMontante() - getCapital()) / getCapital()) * 100);
     }
 
     @Override
@@ -26,5 +25,11 @@ public class Acao extends InvestimentoMensal {
                 setMontante(getMontante() * (1 - (porcAlteracao / 100)));
             }
         }
+        calcRentabilidade();
+    }
+
+    @Override
+    public String toString() {
+        return "Tipo de Investimento: Ações, " + super.toString();
     }
 }

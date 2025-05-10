@@ -7,11 +7,13 @@ public abstract class TipoInvestimento {
 
     public TipoInvestimento(double capital) {
         this.capital = capital;
-        this.id = contador++; 
+        this.id = contador++;
     }
 
     public abstract void calcRentabilidade();
     public abstract void calcValorFinal();
+    public abstract int getTempoInvestido();
+    public abstract void setTempoInvestido(int tempo);
 
     public double getCapital() {
         return capital;
@@ -23,6 +25,8 @@ public abstract class TipoInvestimento {
 
     public void setCapital(double capital) {
         this.capital = capital;
+        calcValorFinal();
+        calcRentabilidade();
     }
 
     public double getMontante() {

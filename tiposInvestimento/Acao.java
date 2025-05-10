@@ -15,7 +15,7 @@ public class Acao extends InvestimentoMensal {
     @Override
     public void calcValorFinal() {
         setMontante(getCapital());
-        for (int i = 0; i < getQuantMeses(); i++) {
+        for (int i = 0; i < getTempoInvestido(); i++) {
             int subiuOuNao = random.nextInt(2);
             boolean subiu = subiuOuNao == 1;
             double porcAlteracao = random.nextDouble(21);
@@ -30,6 +30,6 @@ public class Acao extends InvestimentoMensal {
 
     @Override
     public String toString() {
-        return "ID: " + getId() + " Tipo de Investimento: Ações" + super.toString();
+        return "ID: " + getId() + ", Tipo de Investimento: Ações" + super.toString();
     }
 }

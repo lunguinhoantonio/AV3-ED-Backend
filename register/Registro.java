@@ -1,22 +1,27 @@
 package register;
+import tiposInvestimento.TipoInvestimento;
 import java.util.ArrayList;
 import java.util.List;
-public class Registro<T> {
-    private List<T> registros;
+public class Registro {
+    private List<TipoInvestimento> registros;
 
     public Registro() {
         registros = new ArrayList<>();
     }
 
-    public void add(T simulacao) {
+    public void add(TipoInvestimento simulacao) {
         registros.add(simulacao);
+    }
+
+    public void remove(int index) {
+        registros.remove(index - 1);
     }
 
     public int size() {
         return registros.size();
     }
 
-    public List<T> getRegistros() {
+    public List<TipoInvestimento> getRegistros() {
         return new ArrayList<>(registros);
     }
 
@@ -24,8 +29,16 @@ public class Registro<T> {
         return registros.isEmpty();
     }
 
-    @Override
-    public String toString() {
-        return "registros = " + getRegistros();
+    public TipoInvestimento get(int index) {
+        return registros.get(index - 1);
+    }
+
+    public int exists(int idSimulacaoAProcurar) {
+        int index = 0;
+        for (TipoInvestimento t : registros) {
+            if (t.getId() == idSimulacaoAProcurar) return index;
+            index++;
+        }
+        return -1;
     }
 }

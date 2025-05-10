@@ -12,7 +12,7 @@ public class CDB extends InvestimentoAnual {
 
     @Override
     public void calcValorFinal() {
-        setMontante(getCapital() * Math.pow(1 + getTaxaCDI(), getQuantAnos()));
+        setMontante(getCapital() * Math.pow(1 + getTaxaCDI(), getTempoInvestido()));
         calcRentabilidade();
     }
 
@@ -22,7 +22,7 @@ public class CDB extends InvestimentoAnual {
 
     @Override
     public String toString() {
-        return "ID: " + getId() + " Tipo do Investimento: CDB" + super.toString() +
+        return "ID: " + getId() + ", Tipo do Investimento: CDB" + super.toString() +
                 ", Taxa CDI: " + String.format("%.2f", getTaxaCDI() * 100) + "%";
     }
 }

@@ -14,16 +14,20 @@ public abstract class InvestimentoAnual extends TipoInvestimento {
     @Override
     public abstract void calcValorFinal();
 
-    public int getQuantAnos() {
+    @Override
+    public int getTempoInvestido() {
         return quantAnos;
     }
 
-    public void setQuantAnos(int quantAnos) {
-        this.quantAnos = quantAnos;
+    @Override
+    public void setTempoInvestido(int tempo) {
+        this.quantAnos = tempo;
+        calcValorFinal();
+        calcRentabilidade();
     }
 
     @Override
     public String toString() {
-        return super.toString() + getQuantAnos() + (getQuantAnos() == 1 ? " ano" : " anos");
+        return super.toString() + getTempoInvestido() + (getTempoInvestido() == 1 ? " ano" : " anos");
     }
 }

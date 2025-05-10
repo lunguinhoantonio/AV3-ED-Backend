@@ -12,7 +12,7 @@ public class TesouroSelic extends InvestimentoAnual {
 
     @Override
     public void calcValorFinal() {
-        setMontante(getCapital() * Math.pow(1 + getTaxaSelic(), getQuantAnos()));
+        setMontante(getCapital() * Math.pow(1 + getTaxaSelic(), getTempoInvestido()));
         calcRentabilidade();
     }
 
@@ -22,7 +22,7 @@ public class TesouroSelic extends InvestimentoAnual {
 
     @Override
     public String toString() {
-        return "ID: " + getId() + " Tipo do Investimento: Tesouro Selic" + super.toString() +
+        return "ID: " + getId() + ", Tipo do Investimento: Tesouro Selic" + super.toString() +
                 ", Taxa Selic: " + getTaxaSelic() * 100 + "%";
     }
 }

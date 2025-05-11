@@ -196,7 +196,7 @@ public class Yeste {
                         } else if (confirm != 'N') {
                             System.out.println("Opção inválida!");
                         }
-                    } while (confirm != 'S' && confirm != 'N');
+                    } while (confirm != 'N');
                     break;
                 case 5:
                     if (registros.isEmpty()) {

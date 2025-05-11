@@ -1,26 +1,25 @@
 import tiposInvestimento.*;
 import register.Registro;
+import writer.RegistroEmArquivo;
 
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class Yeste {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         Registro registros = new Registro();
         
-        List<TesouroSelic> listaTSelic = new ArrayList<>();
-        List<Acao> listaAcoes = new ArrayList<>();
-        List<Poupanca> listaPoupanca = new ArrayList<>();
-        List<CDB> listaCDB = new ArrayList<>();
+        Stack<TesouroSelic> pilhaTSelic = new Stack<>();
+        Stack<Acao> pilhaAcoes = new Stack<>();
+        Stack<Poupanca> pilhaPoupanca = new Stack<>();
+        Stack<CDB> pilhaCDB = new Stack<>();
         int opc;
         double capital;
         int tempo;
         do {
             System.out.println("Selecione a opcao desejada:");
-            System.out.println("0 - Finalizar programa");
+            System.out.println("0 - Finalizar programa" + (!registros.isEmpty() ? " e exportar histórico" : ""));
             System.out.println("1 - Fazer investimento");
             System.out.println("2 - Listar simulações");
             System.out.println("3 - Buscar simulações");
@@ -63,12 +62,12 @@ public class Yeste {
                                         System.out.println("O tempo não pode ser negativo ou igual a zero!");
                                     }
                                 } while (tempo <= 0);
-                                listaPoupanca.add(new Poupanca(capital, tempo));
-                                listaPoupanca.getLast().calcValorFinal();
-                                System.out.print("Resultado de " + listaPoupanca.getLast().getTempoInvestido() + (listaPoupanca.getLast().getTempoInvestido() == 1 ? " mês" : " meses") + ": ");
-                                System.out.printf("R$%.2f\n", listaPoupanca.getLast().getMontante());
-                                System.out.printf("Rendeu %.2f%%!\n", listaPoupanca.getLast().getPorcRendimento());
-                                registros.add(listaPoupanca.getLast());
+                                pilhaPoupanca.push(new Poupanca(capital, tempo));
+                                pilhaPoupanca.peek().calcValorFinal();
+                                System.out.print("Resultado de " + pilhaPoupanca.peek().getTempoInvestido() + (pilhaPoupanca.peek().getTempoInvestido() == 1 ? " mês" : " meses") + ": ");
+                                System.out.printf("R$%.2f\n", pilhaPoupanca.peek().getMontante());
+                                System.out.printf("Rendeu %.2f%%!\n", pilhaPoupanca.peek().getPorcRendimento());
+                                registros.add(pilhaPoupanca.pop());
                                 break;
                             case 2:
                                 do {
@@ -85,12 +84,12 @@ public class Yeste {
                                         System.out.println("O tempo não pode ser negativo ou igual a zero!");
                                     }
                                 } while (tempo <= 0);
-                                listaCDB.add(new CDB(capital, tempo));
-                                listaCDB.getLast().calcValorFinal();
-                                System.out.print("Resultado de " + listaCDB.getLast().getTempoInvestido() + (listaCDB.getLast().getTempoInvestido() == 1 ? " ano" : " anos") + ": ");
-                                System.out.printf("R$%.2f\n", listaCDB.getLast().getMontante());
-                                System.out.printf("Rendeu %.2f%%!\n", listaCDB.getLast().getPorcRendimento());
-                                registros.add(listaCDB.getLast());
+                                pilhaCDB.push(new CDB(capital, tempo));
+                                pilhaCDB.peek().calcValorFinal();
+                                System.out.print("Resultado de " + pilhaCDB.peek().getTempoInvestido() + (pilhaCDB.peek().getTempoInvestido() == 1 ? " ano" : " anos") + ": ");
+                                System.out.printf("R$%.2f\n", pilhaCDB.peek().getMontante());
+                                System.out.printf("Rendeu %.2f%%!\n", pilhaCDB.peek().getPorcRendimento());
+                                registros.add(pilhaCDB.pop());
                                 break;
                             case 3:
                                 do {
@@ -107,12 +106,12 @@ public class Yeste {
                                         System.out.println("O tempo não pode ser negativo ou igual a zero!");
                                     }
                                 } while (tempo <= 0);
-                                listaTSelic.add(new TesouroSelic(capital, tempo));
-                                listaTSelic.getLast().calcValorFinal();
-                                System.out.print("Resultado de " + listaTSelic.getLast().getTempoInvestido() + (listaTSelic.getLast().getTempoInvestido() == 1 ? " ano" : " anos") + ": ");
-                                System.out.printf("R$%.2f\n", listaTSelic.getLast().getMontante());
-                                System.out.printf("Rendeu %.2f%%!\n", listaTSelic.getLast().getPorcRendimento());
-                                registros.add(listaTSelic.getLast());
+                                pilhaTSelic.push(new TesouroSelic(capital, tempo));
+                                pilhaTSelic.peek().calcValorFinal();
+                                System.out.print("Resultado de " + pilhaTSelic.peek().getTempoInvestido() + (pilhaTSelic.peek().getTempoInvestido() == 1 ? " ano" : " anos") + ": ");
+                                System.out.printf("R$%.2f\n", pilhaTSelic.peek().getMontante());
+                                System.out.printf("Rendeu %.2f%%!\n", pilhaTSelic.peek().getPorcRendimento());
+                                registros.add(pilhaTSelic.pop());
                                 break;
                             case 4:
                                 do {
@@ -129,13 +128,13 @@ public class Yeste {
                                         System.out.println("O tempo não pode ser negativo ou igual a zero!");
                                     }
                                 } while (tempo <= 0);
-                                listaAcoes.add(new Acao(capital, tempo));
-                                listaAcoes.getLast().calcValorFinal();
-                                System.out.print("Resultado de " + listaAcoes.getLast().getTempoInvestido() + (listaAcoes.getLast().getTempoInvestido() == 1 ? " mês" : " meses") + ": ");
-                                System.out.printf("R$%.2f\n", listaAcoes.getLast().getMontante());
-                                System.out.print(listaAcoes.getLast().getPorcRendimento() < 0 ? "Desvalorizou " : "Valorizou ");
-                                System.out.println(listaAcoes.getLast().getPorcRendimento() < 0 ? String.format("%.2f", Math.abs(listaAcoes.getLast().getPorcRendimento())) + "%" : String.format("%.2f", listaAcoes.getLast().getPorcRendimento()) + "%");
-                                registros.add(listaAcoes.getLast());
+                                pilhaAcoes.push(new Acao(capital, tempo));
+                                pilhaAcoes.peek().calcValorFinal();
+                                System.out.print("Resultado de " + pilhaAcoes.peek().getTempoInvestido() + (pilhaAcoes.peek().getTempoInvestido() == 1 ? " mês" : " meses") + ": ");
+                                System.out.printf("R$%.2f\n", pilhaAcoes.peek().getMontante());
+                                System.out.print(pilhaAcoes.peek().getPorcRendimento() < 0 ? "Desvalorizou " : "Valorizou ");
+                                System.out.println(pilhaAcoes.peek().getPorcRendimento() < 0 ? String.format("%.2f", Math.abs(pilhaAcoes.peek().getPorcRendimento())) + "%" : String.format("%.2f", pilhaAcoes.peek().getPorcRendimento()) + "%");
+                                registros.add(pilhaAcoes.pop());
                                 break;
                             default:
                                 System.out.println("Tipo inválido!");
@@ -149,7 +148,7 @@ public class Yeste {
                         break;
                     }
 
-                    for (Object r : registros.getRegistros()) {
+                    for (TipoInvestimento r : registros.getRegistros()) {
                         System.out.println(r);
                     }
 
@@ -159,40 +158,42 @@ public class Yeste {
                         System.out.println("Nenhuma simulação feita!");
                         break;
                     }
-                    int idProcura;
+                    int idProcura, indexProcura;
                     do {
                         System.out.print("Insira um ID para buscar: ");
                         idProcura = sc.nextInt();
-                        if (registros.exists(idProcura) == -1) {
+                        indexProcura = registros.exists(idProcura);
+                        if (indexProcura == -1) {
                             System.out.println("Simulação não encontrada!");
                         }
-                    } while (registros.exists(idProcura) == -1);
-                    System.out.println(registros.get(idProcura));
+                    } while (indexProcura == -1);
+                    System.out.println(registros.get(indexProcura));
                     break;
                 case 4:
                     if (registros.isEmpty()) {
                         System.out.println("Nenhuma simulação feita!");
                         break;
                     }
-                    int idRemove;
+                    int idRemove, indexRemove;
                     do {
                         System.out.print("Insira um ID para remover: ");
                         idRemove = sc.nextInt();
-                        if (registros.exists(idRemove) == -1) {
+                        indexRemove = registros.exists(idRemove);
+                        if (indexRemove == -1) {
                             System.out.println("Simulação não encontrada!");
                         }
-                    } while (registros.exists(idRemove) == -1);
+                    } while (indexRemove == -1);
                     sc.nextLine();
                     char confirm;
                     do {
-                        System.out.println("\"" + registros.get(idRemove) + "\"");
+                        System.out.println("\"" + registros.get(indexRemove) + "\"");
                         System.out.print("Tem certeza que deseja remover? [S/N]: ");
                         confirm = sc.nextLine().toUpperCase().charAt(0);
                         if (confirm == 'S') {
-                            registros.remove(idRemove);
+                            registros.remove(indexRemove);
                             System.out.println("Simulação removida!");
                             break;
-                        } else if (confirm != 'S' && confirm != 'N') {
+                        } else if (confirm != 'N') {
                             System.out.println("Opção inválida!");
                         }
                     } while (confirm != 'S' && confirm != 'N');
@@ -202,14 +203,15 @@ public class Yeste {
                         System.out.println("Nenhuma simulação feita!");
                         break;
                     }
-                    int idEdit;
+                    int idEdit, indexEdit;
                     do {
                         System.out.print("Insira um ID para editar: ");
                         idEdit = sc.nextInt();
-                        if (registros.exists(idEdit) == -1) {
+                        indexEdit = registros.exists(idEdit);
+                        if (indexEdit == -1) {
                             System.out.println("Simulação não encontrada!");
                         }
-                    } while (registros.exists(idEdit) == -1);
+                    } while (indexEdit == -1);
                     System.out.println("Digite o atributo para editar: ");
                     System.out.println("1. Capital inicial (R$)");
                     System.out.println("2. Quantidade de tempo");
@@ -219,26 +221,28 @@ public class Yeste {
                     switch (resp) {
                         case 1:
                             do {
-                                System.out.println("Capital inicial antiga: R$" + String.format("%.2f", registros.get(idEdit).getCapital()));
+                                System.out.println("Capital inicial antiga: R$" + String.format("%.2f", registros.get(indexEdit).getCapital()));
                                 System.out.print("Novo capital inicial (R$): ");
                                 capital = sc.nextDouble();
                                 if (capital <= 0) {
                                     System.out.println("O investimento inicial não deve ser menor ou igual a 0");
                                 }
                             } while (capital <= 0);
-                            registros.get(idEdit).setCapital(capital);
+                            registros.get(indexEdit).setCapital(capital);
                             System.out.println("O investimento foi atualizado com novos valores!");
                             break;
                         case 2:
-                            boolean isAnual = registros.get(idEdit).getClass().getSimpleName().equals("TesouroSelic") || registros.get(idEdit).getClass().getSimpleName().equals("CDB");
+
+                            boolean isAnual = registros.get(indexEdit).getClass().getSuperclass().getSimpleName().equals("InvestimentoAnual");
                             do {
+                                System.out.println("Tempo antigo: " + registros.get(indexEdit).getTempoInvestido() + registros.get(indexEdit).getTextoTempoInvestido());
                                 System.out.print(isAnual ? "Informe o tempo em anos: " : "Informe o tempo em meses: ");
                                 tempo = sc.nextInt();
                                 if (tempo <= 0) {
                                     System.out.println("O tempo não pode ser negativo ou igual a zero!");
                                 }
                             } while (tempo <= 0);
-                            registros.get(idEdit).setTempoInvestido(tempo);
+                            registros.get(indexEdit).setTempoInvestido(tempo);
                             System.out.println("O investimento foi atualizado com novo tempo!");
                             break;
                     }
@@ -249,5 +253,7 @@ public class Yeste {
             }
         }while(opc != 0);
         sc.close();
+
+        if (!registros.isEmpty()) new RegistroEmArquivo(registros);
     }
 }

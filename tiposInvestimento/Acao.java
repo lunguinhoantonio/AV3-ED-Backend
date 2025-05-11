@@ -5,6 +5,7 @@ public class Acao extends InvestimentoMensal {
     Random random = new Random();
     public Acao(double capital, int quantMeses) {
         super(capital, quantMeses);
+        setNomeInvestimento("Ações");
     }
 
     @Override
@@ -29,7 +30,12 @@ public class Acao extends InvestimentoMensal {
     }
 
     @Override
+    public double getTaxa() {
+        return 0;
+    }
+
+    @Override
     public String toString() {
-        return "ID: " + getId() + ", Tipo de Investimento: Ações" + super.toString();
+        return super.toString();
     }
 }

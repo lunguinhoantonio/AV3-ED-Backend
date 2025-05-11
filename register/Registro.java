@@ -3,18 +3,14 @@ import tiposInvestimento.TipoInvestimento;
 import java.util.ArrayList;
 import java.util.List;
 public class Registro {
-    private List<TipoInvestimento> registros;
-
-    public Registro() {
-        registros = new ArrayList<>();
-    }
+    List<TipoInvestimento> registros = new ArrayList<>();
 
     public void add(TipoInvestimento simulacao) {
         registros.add(simulacao);
     }
 
     public void remove(int index) {
-        registros.remove(index - 1);
+        registros.remove(index);
     }
 
     public int size() {
@@ -30,7 +26,7 @@ public class Registro {
     }
 
     public TipoInvestimento get(int index) {
-        return registros.get(index - 1);
+        return registros.get(index);
     }
 
     public int exists(int idSimulacaoAProcurar) {

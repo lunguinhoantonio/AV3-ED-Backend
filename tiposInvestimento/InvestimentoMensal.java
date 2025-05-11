@@ -6,6 +6,7 @@ public abstract class InvestimentoMensal extends TipoInvestimento {
     public InvestimentoMensal(double capital, int quantMeses) {
         super(capital);
         this.quantMeses = quantMeses;
+        setTextoTempoInvestido(getTempoInvestido() == 1 ? " mês" : " meses");
     }
 
     @Override
@@ -24,10 +25,11 @@ public abstract class InvestimentoMensal extends TipoInvestimento {
         this.quantMeses = tempo;
         calcValorFinal();
         calcRentabilidade();
+        setTextoTempoInvestido(getTempoInvestido() == 1 ? " mês" : " meses");
     }
 
     @Override
     public String toString() {
-        return super.toString() + getTempoInvestido() + (getTempoInvestido() == 1 ? " mês" : " meses");
+        return super.toString() + getTempoInvestido() + getTextoTempoInvestido();
     }
 }

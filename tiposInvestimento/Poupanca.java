@@ -4,6 +4,7 @@ public class Poupanca extends InvestimentoMensal {
 
     public Poupanca(double capital, int quantMeses) {
         super(capital, quantMeses);
+        setNomeInvestimento("Poupança");
     }
 
     @Override
@@ -13,17 +14,18 @@ public class Poupanca extends InvestimentoMensal {
 
     @Override
     public void calcValorFinal() {
-        setMontante(getCapital() * Math.pow(1 + getTaxaPoupanca(), getTempoInvestido()));
+        setMontante(getCapital() * Math.pow(1 + getTaxa(), getTempoInvestido()));
         calcRentabilidade();
     }
 
-    public double getTaxaPoupanca() {
+    @Override
+    public double getTaxa() {
         return 0.006743;
     }
 
     @Override
     public String toString() {
-        return "ID: " + getId() + ", Tipo do Investimento: Poupança" + super.toString() +
-                ", Taxa Poupança: " + getTaxaPoupanca() * 100 + "%";
+        return super.toString() +
+                ", Taxa " + getNomeInvestimento() + ": " + getTaxa() * 100 + "%";
     }
 }

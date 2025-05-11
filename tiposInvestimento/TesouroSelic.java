@@ -3,6 +3,7 @@ package tiposInvestimento;
 public class TesouroSelic extends InvestimentoAnual {
     public TesouroSelic(double capital, int quantAnos) {
         super(capital, quantAnos);
+        setNomeInvestimento("Tesouro Selic");
     }
 
     @Override
@@ -12,17 +13,18 @@ public class TesouroSelic extends InvestimentoAnual {
 
     @Override
     public void calcValorFinal() {
-        setMontante(getCapital() * Math.pow(1 + getTaxaSelic(), getTempoInvestido()));
+        setMontante(getCapital() * Math.pow(1 + getTaxa(), getTempoInvestido()));
         calcRentabilidade();
     }
 
-    public double getTaxaSelic() {
+    @Override
+    public double getTaxa() {
         return 0.1475;
     }
 
     @Override
     public String toString() {
-        return "ID: " + getId() + ", Tipo do Investimento: Tesouro Selic" + super.toString() +
-                ", Taxa Selic: " + getTaxaSelic() * 100 + "%";
+        return super.toString() +
+                ", Taxa Selic: " + getTaxa() * 100 + "%";
     }
 }

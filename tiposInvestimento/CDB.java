@@ -3,6 +3,7 @@ package tiposInvestimento;
 public class CDB extends InvestimentoAnual {
     public CDB(double capital, int quantAnos) {
         super(capital, quantAnos);
+        setNomeInvestimento("CDB");
     }
 
     @Override
@@ -12,17 +13,18 @@ public class CDB extends InvestimentoAnual {
 
     @Override
     public void calcValorFinal() {
-        setMontante(getCapital() * Math.pow(1 + getTaxaCDI(), getTempoInvestido()));
+        setMontante(getCapital() * Math.pow(1 + getTaxa(), getTempoInvestido()));
         calcRentabilidade();
     }
 
-    public double getTaxaCDI() {
+    @Override
+    public double getTaxa() {
         return 0.1146;
     }
 
     @Override
     public String toString() {
-        return "ID: " + getId() + ", Tipo do Investimento: CDB" + super.toString() +
-                ", Taxa CDI: " + String.format("%.2f", getTaxaCDI() * 100) + "%";
+        return super.toString() +
+                ", Taxa CDI: " + String.format("%.2f", getTaxa() * 100) + "%";
     }
 }

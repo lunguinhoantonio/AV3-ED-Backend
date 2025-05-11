@@ -6,6 +6,7 @@ public abstract class InvestimentoAnual extends TipoInvestimento {
     public InvestimentoAnual(double capital, int quantAnos) {
         super(capital);
         this.quantAnos = quantAnos;
+        setTextoTempoInvestido(getTempoInvestido() == 1 ? " ano" : " anos");
     }
 
     @Override
@@ -24,10 +25,11 @@ public abstract class InvestimentoAnual extends TipoInvestimento {
         this.quantAnos = tempo;
         calcValorFinal();
         calcRentabilidade();
+        setTextoTempoInvestido(getTempoInvestido() == 1 ? " ano" : " anos");
     }
 
     @Override
     public String toString() {
-        return super.toString() + getTempoInvestido() + (getTempoInvestido() == 1 ? " ano" : " anos");
+        return super.toString() + getTempoInvestido() + getTextoTempoInvestido();
     }
 }

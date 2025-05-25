@@ -1,7 +1,7 @@
 package tiposInvestimento;
 
 import java.util.Random;
-public class Acao extends InvestimentoMensal {
+public final class Acao extends InvestimentoMensal {
     Random random = new Random();
     public Acao(double capital, int quantMeses) {
         super(capital, quantMeses);

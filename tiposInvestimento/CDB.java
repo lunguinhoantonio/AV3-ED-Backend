@@ -1,6 +1,6 @@
 package tiposInvestimento;
 
-public class CDB extends InvestimentoAnual {
+public final class CDB extends InvestimentoAnual {
     public CDB(double capital, int quantAnos) {
         super(capital, quantAnos);
         setNomeInvestimento("CDB");

@@ -1,6 +1,6 @@
 package tiposInvestimento;
 
-public class TesouroSelic extends InvestimentoAnual {
+public final class TesouroSelic extends InvestimentoAnual {
     public TesouroSelic(double capital, int quantAnos) {
         super(capital, quantAnos);
         setNomeInvestimento("Tesouro Selic");

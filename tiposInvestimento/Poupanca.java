@@ -1,6 +1,6 @@
 package tiposInvestimento;
 
-public class Poupanca extends InvestimentoMensal {
+public final class Poupanca extends InvestimentoMensal {
 
     public Poupanca(double capital, int quantMeses) {
         super(capital, quantMeses);
